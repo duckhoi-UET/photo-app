@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import './RandomPhoto.scss';
 import { Button } from 'reactstrap';
 
+
 RandomPhoto.propTypes = {
     name: PropTypes.string,
     imageUrl: PropTypes.string,
     onImageUrlChange: PropTypes.func,
     onRandomButtonBlur: PropTypes.func,
+    clName: PropTypes.string,
 };
 
 RandomPhoto.defaultProps = {
@@ -15,6 +17,7 @@ RandomPhoto.defaultProps = {
     imageUrl: '',
     onImageUrlChange: null,
     onRandomButtonBlur: null,
+    clName: null,
 }
 
 const getRandomImageUrl = () => {
@@ -23,7 +26,7 @@ const getRandomImageUrl = () => {
 };
 
 function RandomPhoto(props) {
-    const {name, imageUrl, onImageUrlChange, onRandomButtonBlur} = props;
+    const {name, imageUrl, onImageUrlChange, onRandomButtonBlur, clName} = props;
 
     const handleRandomPhotoClick = async () => {
         if(onImageUrlChange) {
@@ -32,7 +35,7 @@ function RandomPhoto(props) {
         }
     };
     return (
-        <div className="random-photo">
+        <div className={clName + " random-photo"} >
             <div className="random-photo__button">
                 <Button
                     outline
@@ -48,7 +51,8 @@ function RandomPhoto(props) {
             <div className="random-photo__photo">
                 {imageUrl && (
                     <img src={imageUrl} 
-                         alt="Ooops ... not found. Please click again!" 
+                        alt='Ooop... Not found, please click again!'
+                        
                     />
                 )}
             </div>
